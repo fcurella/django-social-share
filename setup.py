@@ -9,14 +9,14 @@ def read(fname):
 requirements = []
 
 setup(
-    name = "Django Social Share",
+    name = "django social share",
     version = ".".join(map(str, VERSION)),
     description = "",
     long_description = read('README.rst'),
     url = '',
     license = 'MIT',
     author = 'Flavio Curella',
-    author_email = 'eflavio.curella@curella.org',
+    author_email = 'flavio.curella@curella.org',
     packages = find_packages(exclude=['tests']),
     classifiers = [
         'Development Status :: 3 - Alpha',
