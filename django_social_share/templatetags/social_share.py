@@ -12,9 +12,15 @@ except ImportError:
 register = template.Library()
 
 
+def compile_text(context, text):
+    ctx = template.context.Context(context)
+    return template.Template(text).render(ctx)
+
 @register.inclusion_tag('django_social_share/templatetags/post_to_twitter.html', takes_context = True)
 def post_to_twitter(context, text, obj_or_url=None):
+    text = compile_text(context, text)
     request = context['request']
+
     if obj_or_url is not None:
         if isinstance(obj_or_url, Model):
             if DJANGO_BITLY:
@@ -39,6 +45,8 @@ def post_to_twitter(context, text, obj_or_url=None):
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_facebook.html', takes_context = True)
 def post_to_facebook(context, text, obj_or_url=None):
+    text = compile_text(context, text)
+
     request = context['request']
     if obj_or_url is not None:
         if isinstance(obj_or_url, Model):
