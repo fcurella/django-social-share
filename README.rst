@@ -4,6 +4,7 @@ Django Social Share
 Provides tempatetags for 'Tweet This' and 'Share this on Facebook'
 
 ::
+
   INSTALLED_APPS += ['django_social_share']
 
 
