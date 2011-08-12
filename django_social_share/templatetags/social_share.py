@@ -1,6 +1,5 @@
 from django import template
 from django.db.models import Model
-import os
 
 try:
     from django_bitly.templatetags.bitly import bitlify
