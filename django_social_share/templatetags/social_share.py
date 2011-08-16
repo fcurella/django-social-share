@@ -17,9 +17,10 @@ def compile_text(context, text):
     return template.Template(text).render(ctx)
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_twitter.html', takes_context = True)
-def post_to_twitter(context, text, obj_or_url=None):
+def post_to_twitter(context, text, obj_or_url=None, link_text='Post to Twitter'):
     text = compile_text(context, text)
     request = context['request']
+    context['link_text'] = link_text
 
     if obj_or_url is not None:
         if isinstance(obj_or_url, Model):
@@ -28,10 +29,7 @@ def post_to_twitter(context, text, obj_or_url=None):
             else:
                 url = u' ' + request.build_absolute_uri(obj_or_url.get_absolute_url())
         else:
-            if obj_or_url.startswith('http'):
-                url = u' ' + obj_or_url
-            else:
-                url = u' ' + request.build_absolute_uri(obj_or_url)
+            url = u' ' + request.build_absolute_uri(obj_or_url)
     else:
         url = ''
     total_lenght = len(text) + len(url)
@@ -44,10 +42,11 @@ def post_to_twitter(context, text, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_facebook.html', takes_context = True)
-def post_to_facebook(context, text, obj_or_url=None):
+def post_to_facebook(context, text, obj_or_url=None, link_text='Post to Facebook'):
     text = compile_text(context, text)
-
     request = context['request']
+    context['link_text'] = link_text
+
     if obj_or_url is not None:
         if isinstance(obj_or_url, Model):
             url = request.build_absolute_uri(obj_or_url.get_absolute_url())
