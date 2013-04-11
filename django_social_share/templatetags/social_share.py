@@ -44,8 +44,7 @@ def post_to_twitter(context, text, obj_or_url=None, link_text='Post to Twitter')
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_facebook.html', takes_context = True)
-def post_to_facebook(context, text, obj_or_url=None, link_text='Post to Facebook'):
-    text = compile_text(context, text)
+def post_to_facebook(context, obj_or_url=None, link_text='Post to Facebook'):
     request = context['request']
     context['link_text'] = link_text
 
@@ -60,5 +59,5 @@ def post_to_facebook(context, text, obj_or_url=None, link_text='Post to Facebook
     else:
         url = None
 
-    context.update({'text': text, 'url': url})
+    context.update({'url': url})
     return context
