@@ -21,7 +21,7 @@ def compile_text(context, text):
 
 
 class MockRequest(object):
-    def build_absolute_uri(relative_url):
+    def build_absolute_uri(self, relative_url):
         if relative_url.startswith('http'):
             return relative_url
         current_site = Site.objects.get_current()
