@@ -1,13 +1,25 @@
 Django Social Share
 ======================================
 
-Provides tempatetags for 'Tweet This' and 'Share this on Facebook'
+Provides tempatetags for 'Tweet This' and 'Share this on Facebook'.
+
+Installation
+-------------
 
 ::
 
+    $ pip install django-social-share
+
+Add the app to ``INSTALLED_APPS``::
+
   INSTALLED_APPS += ['django_social_share']
 
+It's recommended to add ``django.core.context_processors.request`` to your `` TEMPLATE_CONTEXT_PROCESSORS`` list. This way the templatetags will use the correct scheme and hostname.
 
+If ``django.core.context_processors.request`` is not present, it will simply concatenate the current site's domain (from ``django.contrib.sites``) and the object's relative URL together.
+
+Usage
+-----
 ::
 
   {% post_to_facebook <object_or_url> <link_text> %}
