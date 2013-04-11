@@ -9,7 +9,7 @@ def read(fname):
 requirements = []
 
 setup(
-    name = "django social share",
+    name = "django-social-share",
     version = ".".join(map(str, VERSION)),
     description = "",
     long_description = read('README.rst'),
@@ -29,6 +29,5 @@ setup(
         'Framework :: Django',
     ],
     install_requires = requirements,
-    tests_require = ["nose",],
     test_suite = "nose.collector",
 )
