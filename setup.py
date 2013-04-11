@@ -11,9 +11,9 @@ requirements = []
 setup(
     name = "django-social-share",
     version = ".".join(map(str, VERSION)),
-    description = "",
+    description = "Templatetags for 'tweet this' and 'share on facebook'",
     long_description = read('README.rst'),
-    url = '',
+    url = 'https://github.com/fcurella/django-social-share',
     license = 'MIT',
     author = 'Flavio Curella',
     author_email = 'flavio.curella@curella.org',
