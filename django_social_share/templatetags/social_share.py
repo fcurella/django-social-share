@@ -68,7 +68,7 @@ def post_to_twitter_url(context, text, obj_or_url=None):
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_twitter.html', takes_context=True)
 def post_to_twitter(context, text, obj_or_url=None, link_text='Post to Twitter'):
-    context = post_to_twitter(context, text, obj_or_url)
+    context = post_to_twitter_url(context, text, obj_or_url)
 
     request = context.get('request', MockRequest())
     url = _build_url(request, obj_or_url)
