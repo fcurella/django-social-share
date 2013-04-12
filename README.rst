@@ -32,6 +32,17 @@ Usage
 
 ``<link_text>`` is also optional. It defines the text used for the ``a`` element. Defaults to 'Post to Facebook' and 'Post to Twitter'
 
+::
+
+  {% post_to_twitter_url <text_to_post> <object_or_url> %}
+
+Will add a ``tweet_url`` variable to the context, containing the URL for the Twitter sharer popup.
+
+::
+
+  {% post_to_facebook_url <object_or_url> %}
+
+Will add a ``facebook_url`` variable to the context, containing the URL for the Facebook sharer popup.
 
 Example::
 
