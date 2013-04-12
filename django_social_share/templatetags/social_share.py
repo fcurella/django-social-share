@@ -54,7 +54,7 @@ def _compose_tweet(text, url=None):
     return "%s %s" % (truncated_text, url)
 
 
-@register.simpletag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def post_to_twitter_url(context, text, obj_or_url=None):
     text = compile_text(context, text)
     request = context.get('request', MockRequest())
@@ -79,7 +79,7 @@ def post_to_twitter(context, text, obj_or_url=None, link_text='Post to Twitter')
     return context
 
 
-@register.simpletag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def post_to_facebook_url(context, obj_or_url=None):
     request = context.get('request', MockRequest())
     url = _build_url(request, obj_or_url)
