@@ -9,7 +9,7 @@ requirements = []
 
 setup(
     name = "django-social-share",
-    version = "0.2.0",
+    version = "0.2.1",
     description = "Templatetags for 'tweet this' and 'share on facebook'",
     long_description = read('README.rst'),
     url = 'https://github.com/fcurella/django-social-share',
