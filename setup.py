@@ -1,7 +1,6 @@
 import os
 from setuptools import setup, find_packages
 
-from django_social_share import VERSION
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -10,7 +9,7 @@ requirements = []
 
 setup(
     name = "django-social-share",
-    version = ".".join(map(str, VERSION)),
+    version = "0.2.0",
     description = "Templatetags for 'tweet this' and 'share on facebook'",
     long_description = read('README.rst'),
     url = 'https://github.com/fcurella/django-social-share',
@@ -18,6 +17,7 @@ setup(
     author = 'Flavio Curella',
     author_email = 'flavio.curella@curella.org',
     packages = find_packages(exclude=['tests']),
+    include_package_data=True,
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

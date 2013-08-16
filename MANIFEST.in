@@ -1,3 +1,4 @@
 include README.rst
 include LICENSE
 recursive-include tests *.py
+recursive-include django_social_share/templates *
