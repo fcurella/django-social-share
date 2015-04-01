@@ -1,7 +1,7 @@
 Django Social Share
 ======================================
 
-Provides tempatetags for 'Tweet This' and 'Share this on Facebook'.
+Provides tempatetags for 'Tweet This', 'Share this on Facebook', and 'Share on Google+'.
 
 Installation
 -------------
@@ -23,6 +23,8 @@ Usage
 ::
 
   {% post_to_facebook <object_or_url> <link_text> %}
+  
+  {% post_to_gplus <object_or_url> <link_text> %}
 
   {% post_to_twitter <text_to_post> <object_or_url> <link_text> %}
 
@@ -44,11 +46,18 @@ Will add a ``tweet_url`` variable to the context, containing the URL for the Twi
 
 Will add a ``facebook_url`` variable to the context, containing the URL for the Facebook sharer popup.
 
+::
+
+  {% post_to_gplus_url <object_or_url> %}
+
+Will add a ``gplus_url`` variable to the context, containing the URL for the Google+ sharer popup.
+
 Example::
 
   {% load social_share %}
   
   {% post_to_facebook object_or_url "Post to Facebook!" %}
   {% post_to_twitter "New Song: {{object.title}}. Check it out!" object_or_url "Post to Twitter" %}
+  {% post_to_gplus object_or_url "Post to Google+!" %}
 
-Templates are in ``django_social_share/templatetags/post_to_twitter.html`` and ``django_social_share/templatetags/post_to_facebook.html``. You can override them to suit your mileage.
+Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``. You can override them to suit your mileage.
