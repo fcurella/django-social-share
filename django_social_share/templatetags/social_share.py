@@ -16,7 +16,7 @@ register = template.Library()
 
 TWITTER_ENDPOINT = 'http://twitter.com/intent/tweet?text=%s'
 FACEBOOK_ENDPOINT = 'http://www.facebook.com/sharer/sharer.php?u=%s'
-GPLUS_ENDPOINt = 'http://plus.google.com/share?url=%s'
+GPLUS_ENDPOINT = 'http://plus.google.com/share?url=%s'
 
 def compile_text(context, text):
     ctx = template.context.Context(context)
