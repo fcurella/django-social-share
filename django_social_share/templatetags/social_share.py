@@ -111,7 +111,7 @@ def post_to_gplus(context, obj_or_url=None, link_text='Post to Google+'):
     return context
 
 
-# Starts icon functionality.
+# Icon functionality starts here.
 @register.inclusion_tag('django_social_share/templatetags/twitter_icon_circle.html', takes_context=True)
 def post_to_twitter_icon(context, text, obj_or_url=None):
     context = post_to_twitter_url(context, text, obj_or_url)
@@ -121,4 +121,10 @@ def post_to_twitter_icon(context, text, obj_or_url=None):
     tweet = _compose_tweet(text, url)
 
     context['full_text'] = tweet
+    return context
+
+
+@register.inclusion_tag('django_social_share/templatetags/facebook_icon_circle', takes_context=True)
+def post_to_facebook_icon(context, obj_or_url=None):
+    context = post_to_facebook_url(context, obj_or_url)
     return context
