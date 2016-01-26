@@ -124,7 +124,7 @@ def post_to_twitter_icon(context, text, obj_or_url=None):
     return context
 
 
-@register.inclusion_tag('django_social_share/templatetags/facebook_icon_circle', takes_context=True)
+@register.inclusion_tag('django_social_share/templatetags/facebook_icon_circle.html', takes_context=True)
 def post_to_facebook_icon(context, obj_or_url=None):
     context = post_to_facebook_url(context, obj_or_url)
     return context
