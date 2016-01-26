@@ -113,7 +113,7 @@ def post_to_gplus(context, obj_or_url=None, link_text='Post to Google+'):
 
 # Starts icon functionality.
 @register.inclusion_tag('django_social_share/templatetags/twitter_icon_circle.html', takes_context=True)
-def post_to_twitter(context, text, obj_or_url=None):
+def post_to_twitter_icon(context, text, obj_or_url=None):
     context = post_to_twitter_url(context, text, obj_or_url)
 
     request = context.get('request', MockRequest())
