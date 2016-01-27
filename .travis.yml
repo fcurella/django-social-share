@@ -24,6 +24,6 @@ matrix:
     - python: "pypy3"
       env: DJANGO="Django>=1.9,<1.10"
 script:
-  - coverage run --source django_fakery setup.py test
+  - coverage run --source django_social_share setup.py test
 after_success:
   coveralls
