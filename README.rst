@@ -61,3 +61,19 @@ Example::
   {% post_to_gplus object_or_url "Post to Google+!" %}
 
 Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``. You can override them to suit your mileage.
+
+Icon Images
+---------
+By using the Font Awesome cdn in your project template's <head> tags, you can generate icon images for the social links by using the following template tags...
+::
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+   {% post_to_facebook_icon <object_or_url> %}
+   {% post_to_twitter_icon "New Song: {{object.title}}. Check it out!" object_or_url %}
+   {% post_to_gplus_icon <object_or_url> %}
+   
+   
+The box background and colors can be changed by modifying the css for the corresponding elements.
+
+
