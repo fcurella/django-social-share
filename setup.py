@@ -6,6 +6,9 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
     
 requirements = []
+test_requirements = [
+    "Django>=1.7",
+]
 
 setup(
     name = "django-social-share",
@@ -29,5 +32,6 @@ setup(
         'Framework :: Django',
     ],
     install_requires = requirements,
-    test_suite = "nose.collector",
+    test_requires=test_requirements,
+    test_suite='django_social_share.tests.runtests.runtests'
 )
