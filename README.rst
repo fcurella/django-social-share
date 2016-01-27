@@ -4,6 +4,8 @@ Django Social Share
 .. image:: https://travis-ci.org/fcurella/django-social-share.svg?branch=master
     :target: https://travis-ci.org/fcurella/django-social-share
 
+.. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
+    :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
 Provides tempatetags for 'Tweet This', 'Share this on Facebook', and 'Share on Google+'.
 
