@@ -28,6 +28,12 @@ class TemplateTagsTest(TestCase):
         expected = ' <div class="gplus-this">\n    <a href="http://plus.google.com/share?url=http%3A//example.com" target="_blank">example</a>\n</div>\n'
         self.assertEqual(result, expected)
 
+    def test_mail_url(self):
+        template = Template("{% load social_share %} {% post_to_mail_url text subject url %}")
+        template.render(self.context)
+        expected = 'mailto:?subject=Example%20Domain&body=example%20http%3A//example.com'
+        self.assertEqual(self.context['mailto_url'], expected)
+
     def test_mail(self):
         template = Template("{% load social_share %} {% post_to_mail text subject url %}")
         result = template.render(self.context)
