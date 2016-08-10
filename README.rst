@@ -7,7 +7,7 @@ Django Social Share
 .. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
-Provides tempatetags for 'Tweet This', 'Share this on Facebook', and 'Share on Google+'.
+Provides tempatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+' and 'mailto'.
 
 Installation
 -------------
@@ -33,12 +33,16 @@ Usage
   {% post_to_gplus <object_or_url> <link_text> %}
 
   {% post_to_twitter <text_to_post> <object_or_url> <link_text> %}
+  
+  {% post_to_mail <email_subject> <text_to_post> <object_or_url> <link_text> %}
 
 ``<text_to_post>`` may contain any valid Django Template code. Note that Facebook does not support this anymore.
 
 ``<object_or_url>`` is optional. If you pass a django model instance, it will use its ``get_absolute_url`` method. Additionally, if you have ``django_bitly`` installed, it will use its shortUrl on Twitter.
 
 ``<link_text>`` is also optional. It defines the text used for the ``a`` element. Defaults to 'Post to Facebook' and 'Post to Twitter'
+
+``<email_subject>`` may contain any valid Django Template code.
 
 ::
 
@@ -58,6 +62,12 @@ Will add a ``facebook_url`` variable to the context, containing the URL for the 
 
 Will add a ``gplus_url`` variable to the context, containing the URL for the Google+ sharer popup.
 
+::
+
+  {% post_to_mail_url <email_subject> <text_to_post> <object_or_url> %}
+
+Will add a ``mailto_url`` variable to the context, containing the URL for the mailto anchor.
+
 Example::
 
   {% load social_share %}
@@ -65,5 +75,6 @@ Example::
   {% post_to_facebook object_or_url "Post to Facebook!" %}
   {% post_to_twitter "New Song: {{object.title}}. Check it out!" object_or_url "Post to Twitter" %}
   {% post_to_gplus object_or_url "Post to Google+!" %}
+  {% post_to_mail object.title "New Song: {{object.title}}. Check it out!" object_or_url "Share via email" %}
 
-Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``. You can override them to suit your mileage.
+Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``, ``django_social_share/templatetags/post_to_mail.html``. You can override them to suit your mileage.
