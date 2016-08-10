@@ -6,7 +6,8 @@ class TemplateTagsTest(TestCase):
     def setUp(self):
         self.context = Context({
             'url': 'http://example.com',
-            'text': 'example'
+            'text': 'example',
+            'subject': 'Example Domain'
         })
 
     def test_twitter(self):
@@ -25,4 +26,10 @@ class TemplateTagsTest(TestCase):
         template = Template("{% load social_share %} {% post_to_gplus url text %}")
         result = template.render(self.context)
         expected = ' <div class="gplus-this">\n    <a href="http://plus.google.com/share?url=http%3A//example.com" target="_blank">example</a>\n</div>\n'
+        self.assertEqual(result, expected)
+
+    def test_mail(self):
+        template = Template("{% load social_share %} {% post_to_mail text subject url %}")
+        result = template.render(self.context)
+        expected = ' <div class="mail-this">\n    <a href="mailto:?subject=Example%20Domain&body=example%20http%3A//example.com">Share via email</a>\n</div>\n'
         self.assertEqual(result, expected)
