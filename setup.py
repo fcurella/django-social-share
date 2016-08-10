@@ -34,6 +34,6 @@ setup(
         'Framework :: Django',
     ],
     install_requires=requirements,
-    test_requires=test_requirements,
+    tests_require=test_requirements,
     test_suite='django_social_share.tests.runtests.runtests'
 )
