@@ -49,14 +49,18 @@ def _build_url(request, obj_or_url):
 
 
 def _compose_tweet(text, url=None):
-    if url is None:
-        url = ''
-    total_lenght = len(text) + len(' ') + len(url)
-    if total_lenght > 140:
-        truncated_text = text[:(140 - len(url))] + "…"
-    else:
-        truncated_text = text
-    return "%s %s" % (truncated_text, url)
+    TWITTER_MAX_NUMBER_OF_CHARACTERS = 140
+    TWITTER_LINK_LENGTH = 23  # "A URL of any length will be altered to 23 characters, even if the link itself is less than 23 characters long.
+
+    # Compute length of the tweet
+    url_length = len(' ') + TWITTER_LINK_LENGTH if url else 0
+    total_lenght = len(text) + url_length
+    
+    # Check that the text respects the max number of characters for a tweet
+    if total_lenght > TWITTER_MAX_NUMBER_OF_CHARACTERS:
+        text = text[:(TWITTER_MAX_NUMBER_OF_CHARACTERS - url_length - 1)] + "…"  # len("…") == 1
+        
+    return "%s %s" % (text, url) if url else text
 
 
 @register.simple_tag(takes_context=True)
