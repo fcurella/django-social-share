@@ -29,13 +29,13 @@ class TemplateTagsTest(TestCase):
         self.assertEqual(result, expected)
 
     def test_mail_url(self):
-        template = Template("{% load social_share %} {% post_to_mail_url subject text url %}")
+        template = Template("{% load social_share %} {% send_mail_url subject text url %}")
         template.render(self.context)
         expected = 'mailto:?subject=Example%20Domain&body=example%20http%3A//example.com'
         self.assertEqual(self.context['mailto_url'], expected)
 
     def test_mail(self):
-        template = Template("{% load social_share %} {% post_to_mail subject text url %}")
+        template = Template("{% load social_share %} {% send_mail subject text url %}")
         result = template.render(self.context)
         expected = ' <div class="mail-this">\n    <a href="mailto:?subject=Example%20Domain&body=example%20http%3A//example.com">Share via email</a>\n</div>\n'
         self.assertEqual(result, expected)

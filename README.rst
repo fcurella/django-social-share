@@ -7,7 +7,7 @@ Django Social Share
 .. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
-Provides tempatetags for 'Tweet This', 'Share this on Facebook', and 'Share on Google+'.
+Provides tempatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+' and 'Share via Email'.
 
 Installation
 -------------
@@ -34,11 +34,13 @@ Usage
 
   {% post_to_twitter <text_to_post> <object_or_url> <link_text> %}
 
+  {% send_email <subject> <text_to_post> <object_or_url> <link_text> %}
+
 ``<text_to_post>`` may contain any valid Django Template code. Note that Facebook does not support this anymore.
 
 ``<object_or_url>`` is optional. If you pass a django model instance, it will use its ``get_absolute_url`` method. Additionally, if you have ``django_bitly`` installed, it will use its shortUrl on Twitter.
 
-``<link_text>`` is also optional. It defines the text used for the ``a`` element. Defaults to 'Post to Facebook' and 'Post to Twitter'
+``<link_text>`` is also optional. It defines the text used for the ``a`` element. Defaults to 'Post to Facebook' and 'Post to Twitter'.
 
 ::
 
@@ -57,6 +59,13 @@ Will add a ``facebook_url`` variable to the context, containing the URL for the 
   {% post_to_gplus_url <object_or_url> %}
 
 Will add a ``gplus_url`` variable to the context, containing the URL for the Google+ sharer popup.
+
+
+::
+
+  {% send_email_url <subject> <text_to_post> <object_or_url> <link_text> %}
+
+Will add a ``mailto_url`` variable to the context, containing the URL that will open the user's email client with the specified values pre-filled.
 
 Example::
 

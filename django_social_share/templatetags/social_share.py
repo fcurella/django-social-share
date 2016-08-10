@@ -115,7 +115,7 @@ def post_to_gplus(context, obj_or_url=None, link_text='Post to Google+'):
 
 
 @register.simple_tag(takes_context=True)
-def post_to_mail_url(context, subject, text, obj_or_url=None):
+def send_email_url(context, subject, text, obj_or_url=None):
     text = compile_text(context, text)
     subject = compile_text(context, subject)
     request = context.get('request', MockRequest())
@@ -125,8 +125,8 @@ def post_to_mail_url(context, subject, text, obj_or_url=None):
     return context
 
 
-@register.inclusion_tag('django_social_share/templatetags/post_to_mail.html', takes_context=True)
-def post_to_mail(context, subject, text, obj_or_url=None, link_text='Share via email'):
-    context = post_to_mail_url(context, subject, text, obj_or_url)
+@register.inclusion_tag('django_social_share/templatetags/send_email.html', takes_context=True)
+def send_email(context, subject, text, obj_or_url=None, link_text='Share via email'):
+    context = send_email_url(context, subject, text, obj_or_url)
     context['link_text'] = link_text
     return context
