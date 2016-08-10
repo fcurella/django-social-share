@@ -54,12 +54,12 @@ def _compose_tweet(text, url=None):
 
     # Compute length of the tweet
     url_length = len(' ') + TWITTER_LINK_LENGTH if url else 0
-    total_lenght = len(text) + url_length
-    
+    total_length = len(text) + url_length
+
     # Check that the text respects the max number of characters for a tweet
-    if total_lenght > TWITTER_MAX_NUMBER_OF_CHARACTERS:
+    if total_length > TWITTER_MAX_NUMBER_OF_CHARACTERS:
         text = text[:(TWITTER_MAX_NUMBER_OF_CHARACTERS - url_length - 1)] + "…"  # len("…") == 1
-        
+
     return "%s %s" % (text, url) if url else text
 
 
