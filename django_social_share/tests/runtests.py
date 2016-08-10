@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 import sys
+import os
 
 from django.conf import settings
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 settings.configure(
     SITE_ID=1,
@@ -16,6 +20,14 @@ settings.configure(
         'django_social_share',
         'django_social_share.tests',
     ],
+    TEMPLATES=[
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [
+                os.path.join(BASE_DIR, 'templates'),
+            ],
+        },
+    ]
 )
 
 
