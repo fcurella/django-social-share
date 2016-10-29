@@ -24,6 +24,15 @@ It's recommended to add ``django.core.context_processors.request`` to your `` TE
 
 If ``django.core.context_processors.request`` is not present, it will simply concatenate the current site's domain (from ``django.contrib.sites``) and the object's relative URL together.
 
+NOTE: For Django 1.10 
+``django.contrib.sites`` is required in INSTALLED_APPS.
+
+``django.core.context_processors.request`` has been dropped in favor of ``django.template.context_processors.request``.
+
+SITE_ID = 1 is required in settings.py to avoid 500 Internal error on live production with Apache.
+
+
+
 Usage
 -----
 ::
