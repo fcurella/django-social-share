@@ -1,19 +1,22 @@
 from django.template import Context, Template
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 
 
 class TemplateTagsTest(TestCase):
+
     def setUp(self):
+        self.factory = RequestFactory()
         self.context = Context({
             'url': 'http://example.com',
             'text': 'example',
-            'subject': 'Example Domain'
+            'subject': 'Example Domain',
+            'request': self.factory.get('/')
         })
 
     def test_twitter(self):
-        template = Template("{% load social_share %} {% post_to_twitter url text %}")
+        template = Template("{% load social_share %} {% post_to_twitter text url %}")
         result = template.render(self.context)
-        expected = ' <div class="tweet-this">\n    <a href="http://twitter.com/intent/tweet?text=http%3A//example.com%20example.comexample" class="meta-act-link meta-tweet">Post to Twitter</a>\n</div>\n'
+        expected = ' <div class="tweet-this">\n    <a href="http://twitter.com/intent/tweet?text=example%20http%3A//example.com" class="meta-act-link meta-tweet">Post to Twitter</a>\n</div>\n'
         self.assertEqual(result, expected)
 
     def test_facebook(self):
