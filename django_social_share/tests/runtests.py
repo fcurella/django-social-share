@@ -25,6 +25,11 @@ settings.configure(
             'DIRS': [
                 os.path.join(BASE_DIR, 'templates'),
             ],
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.request',
+                ],
+            }
         },
     ]
 )
