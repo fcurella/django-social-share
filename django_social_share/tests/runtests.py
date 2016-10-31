@@ -16,7 +16,6 @@ settings.configure(
         'django.contrib.auth',
         'django.contrib.sessions',
         'django.contrib.contenttypes',
-        'django.contrib.sites',
         'django_social_share',
         'django_social_share.tests',
     ],
