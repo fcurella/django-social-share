@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django import template
-from django.contrib.sites.models import Site
+
 from django.db.models import Model
 from django.template.defaultfilters import urlencode
 
@@ -25,15 +25,6 @@ MAIL_ENDPOINT = 'mailto:?subject=%s&body=%s'
 def compile_text(context, text):
     ctx = template.context.Context(context)
     return template.Template(text).render(ctx)
-
-
-class MockRequest(object):
-    @staticmethod
-    def build_absolute_uri(relative_url):
-        if relative_url.startswith('http'):
-            return relative_url
-        current_site = Site.objects.get_current()
-        return '%s%s' % (current_site.domain, relative_url)
 
 
 def _build_url(request, obj_or_url):
@@ -66,7 +57,7 @@ def _compose_tweet(text, url=None):
 @register.simple_tag(takes_context=True)
 def post_to_twitter_url(context, text, obj_or_url=None):
     text = compile_text(context, text)
-    request = context.get('request', MockRequest())
+    request = context['request']
 
     url = _build_url(request, obj_or_url)
 
@@ -79,7 +70,7 @@ def post_to_twitter_url(context, text, obj_or_url=None):
 def post_to_twitter(context, text, obj_or_url=None, link_text='Post to Twitter'):
     context = post_to_twitter_url(context, text, obj_or_url)
 
-    request = context.get('request', MockRequest())
+    request = context['request']
     url = _build_url(request, obj_or_url)
     tweet = _compose_tweet(text, url)
 
@@ -90,7 +81,7 @@ def post_to_twitter(context, text, obj_or_url=None, link_text='Post to Twitter')
 
 @register.simple_tag(takes_context=True)
 def post_to_facebook_url(context, obj_or_url=None):
-    request = context.get('request', MockRequest())
+    request = context['request']
     url = _build_url(request, obj_or_url)
     context['facebook_url'] = FACEBOOK_ENDPOINT % urlencode(url)
     return context
@@ -105,7 +96,7 @@ def post_to_facebook(context, obj_or_url=None, link_text='Post to Facebook'):
 
 @register.simple_tag(takes_context=True)
 def post_to_gplus_url(context, obj_or_url=None):
-    request = context.get('request', MockRequest())
+    request = context['request']
     url = _build_url(request, obj_or_url)
     context['gplus_url'] = GPLUS_ENDPOINT % urlencode(url)
     return context
@@ -122,7 +113,7 @@ def post_to_gplus(context, obj_or_url=None, link_text='Post to Google+'):
 def send_email_url(context, subject, text, obj_or_url=None):
     text = compile_text(context, text)
     subject = compile_text(context, subject)
-    request = context.get('request', MockRequest())
+    request = context['request']
     url = _build_url(request, obj_or_url)
     full_text = "%s %s" % (text, url)
     context['mailto_url'] = MAIL_ENDPOINT % (urlencode(subject), urlencode(full_text))
