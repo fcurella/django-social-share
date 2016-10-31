@@ -18,11 +18,23 @@ Installation
 
 Add the app to ``INSTALLED_APPS``::
 
-  INSTALLED_APPS += ['django_social_share']
+    INSTALLED_APPS += ['django_social_share']
 
-It's recommended to add ``django.core.context_processors.request`` to your `` TEMPLATE_CONTEXT_PROCESSORS`` list. This way the templatetags will use the correct scheme and hostname.
+You will also have to add ``django.core.context_processors.request`` to your ``context_processors`` list. This way the templatetags will use the correct scheme and hostname::
 
-If ``django.core.context_processors.request`` is not present, it will simply concatenate the current site's domain (from ``django.contrib.sites``) and the object's relative URL together.
+    TEMPLATES=[
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [
+                os.path.join(BASE_DIR, 'templates'),
+            ],
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.request',
+                ],
+            }
+        },
+    ]
 
 Usage
 -----
