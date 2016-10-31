@@ -16,7 +16,6 @@ settings.configure(
         'django.contrib.auth',
         'django.contrib.sessions',
         'django.contrib.contenttypes',
-        'django.contrib.sites',
         'django_social_share',
         'django_social_share.tests',
     ],
@@ -26,6 +25,11 @@ settings.configure(
             'DIRS': [
                 os.path.join(BASE_DIR, 'templates'),
             ],
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.request',
+                ],
+            }
         },
     ]
 )
