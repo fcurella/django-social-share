@@ -5,6 +5,7 @@ from django import template
 
 from django.db.models import Model
 from django.template.defaultfilters import urlencode
+from django.utils.safestring import mark_safe
 
 try:
     from django_bitly.templatetags.bitly import bitlify
@@ -133,7 +134,7 @@ def post_to_linkedin_url(context, title, obj_or_url=None):
     request = context['request']
     title = compile_text(context, title[:200]) # 200 char limit
     url = _build_url(request, obj_or_url)
-    context['linkedin_url'] = LINKEDIN_ENDPOINT % (urlencode(title), urlencode(url))
+    context['linkedin_url'] = mark_safe(LINKEDIN_ENDPOINT % (urlencode(title), urlencode(url)))
     return context
 
 
