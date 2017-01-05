@@ -5,6 +5,7 @@ from django import template
 
 from django.db.models import Model
 from django.template.defaultfilters import urlencode
+from django.utils.safestring import mark_safe
 
 try:
     from django_bitly.templatetags.bitly import bitlify
@@ -20,6 +21,7 @@ TWITTER_ENDPOINT = 'http://twitter.com/intent/tweet?text=%s'
 FACEBOOK_ENDPOINT = 'http://www.facebook.com/sharer/sharer.php?u=%s'
 GPLUS_ENDPOINT = 'http://plus.google.com/share?url=%s'
 MAIL_ENDPOINT = 'mailto:?subject=%s&body=%s'
+LINKEDIN_ENDPOINT = 'http://www.linkedin.com/shareArticle?mini=true&title=%s&url=%s'
 
 
 def compile_text(context, text):
@@ -123,5 +125,21 @@ def send_email_url(context, subject, text, obj_or_url=None):
 @register.inclusion_tag('django_social_share/templatetags/send_email.html', takes_context=True)
 def send_email(context, subject, text, obj_or_url=None, link_text='Share via email'):
     context = send_email_url(context, subject, text, obj_or_url)
+    context['link_text'] = link_text
+    return context
+
+
+@register.simple_tag(takes_context=True)
+def post_to_linkedin_url(context, title, obj_or_url=None):
+    request = context['request']
+    title = compile_text(context, title[:200]) # 200 char limit
+    url = _build_url(request, obj_or_url)
+    context['linkedin_url'] = mark_safe(LINKEDIN_ENDPOINT % (urlencode(title), urlencode(url)))
+    return context
+
+
+@register.inclusion_tag('django_social_share/templatetags/post_to_linkedin.html', takes_context=True)
+def post_to_linkedin(context, title, obj_or_url=None, link_text='Post to LinkedIn'):
+    context = post_to_linkedin_url(context, title, obj_or_url)
     context['link_text'] = link_text
     return context

@@ -7,7 +7,7 @@ Django Social Share
 .. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
-Provides tempatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+' and 'mailto://'.
+Provides tempatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+', 'Share on LinkedIn', and 'mailto://'.
 
 Installation
 -------------
@@ -46,6 +46,8 @@ Usage
 
   {% post_to_twitter <text_to_post> <object_or_url> <link_text> %}
   
+  {% post_to_linkedin <subject> <object_or_url> <link_text> %}
+  
   {% post_to_mail <email_subject> <text_to_post> <object_or_url> <link_text> %}
 
   {% send_email <subject> <text_to_post> <object_or_url> <link_text> %}
@@ -78,6 +80,12 @@ Will add a ``gplus_url`` variable to the context, containing the URL for the Goo
 
 ::
 
+  {% post_to_linkedin_url <subject> <object_or_url> %}
+
+Will add a ``linked_url`` variable to the context, containing the URL for the LinkedIn sharer popup.
+
+::
+
   {% send_email_url <subject> <text_to_post> <object_or_url> <link_text> %}
 
 Will add a ``mailto_url`` variable to the context, containing the URL for the ``mailto``anchor.
@@ -89,6 +97,7 @@ Example::
   {% post_to_facebook object_or_url "Post to Facebook!" %}
   {% post_to_twitter "New Song: {{object.title}}. Check it out!" object_or_url "Post to Twitter" %}
   {% post_to_gplus object_or_url "Post to Google+!" %}
+  {% post_to_linkedin object.title object_or_url "Post to LinkedIn" %}
   {% send_email object.title "New Song: {{object.title}}. Check it out!" object_or_url "Share via email" %}
 
-Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``, ``django_social_share/templatetags/send_email.html``. You can override them to suit your mileage.
+Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``, ``django_social_share/templatetags/send_email.html``, ``django_social_share/templatetags/post_to_linkedin.html``. You can override them to suit your mileage.
