@@ -132,7 +132,7 @@ def send_email(context, subject, text, obj_or_url=None, link_text='Share via ema
 @register.simple_tag(takes_context=True)
 def post_to_linkedin_url(context, title, obj_or_url=None):
     request = context['request']
-    title = compile_text(context, title[:200]) # 200 char limit
+    title = compile_text(context, title[:200])  # 200 char limit
     url = _build_url(request, obj_or_url)
     context['linkedin_url'] = mark_safe(LINKEDIN_ENDPOINT % (urlencode(title), urlencode(url)))
     return context
