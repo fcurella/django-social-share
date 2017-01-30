@@ -16,7 +16,7 @@ class TemplateTagsTest(TestCase):
     def test_twitter(self):
         template = Template("{% load social_share %} {% post_to_twitter text url %}")
         result = template.render(self.context)
-        expected = ' <div class="tweet-this">\n  <a href="http://twitter.com/intent/tweet?text=example%20http%3A//example.com" class="meta-act-link meta-tweet" target="_blank">Post to Twitter</a>\n</div>'
+        expected = ' <div class="tweet-this">\n    <a href="http://twitter.com/intent/tweet?text=example%20http%3A//example.com" class="meta-act-link meta-tweet" target="_blank">Post to Twitter</a>\n</div>\n'
         self.assertEqual(result, expected)
 
     def test_facebook(self):
@@ -42,7 +42,7 @@ class TemplateTagsTest(TestCase):
         result = template.render(self.context)
         expected = ' <div class="mail-this">\n    <a href="mailto:?subject=Example%20Domain&body=example%20http%3A//example.com">Share via email</a>\n</div>\n'
         self.assertEqual(result, expected)
-        
+
     def test_linkedin(self):
         template = Template("{% load social_share %} {% post_to_linkedin text url text %}")
         result = template.render(self.context)
