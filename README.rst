@@ -43,14 +43,16 @@ Usage
   {% post_to_facebook <object_or_url> <link_text> %}
   
   {% post_to_gplus <object_or_url> <link_text> %}
-
+  
   {% post_to_twitter <text_to_post> <object_or_url> <link_text> %}
   
   {% post_to_linkedin <subject> <object_or_url> <link_text> %}
   
   {% post_to_mail <email_subject> <text_to_post> <object_or_url> <link_text> %}
-
+  
   {% send_email <subject> <text_to_post> <object_or_url> <link_text> %}
+  
+  {% post_to_reddit <text_to_post> <object_or_url> %}
 
 ``<text_to_post>`` may contain any valid Django Template code. Note that Facebook does not support this anymore.
 
@@ -82,13 +84,19 @@ Will add a ``gplus_url`` variable to the context, containing the URL for the Goo
 
   {% post_to_linkedin_url <subject> <object_or_url> %}
 
-Will add a ``linked_url`` variable to the context, containing the URL for the LinkedIn sharer popup.
+Will add a ``linkedin_url`` variable to the context, containing the URL for the LinkedIn sharer popup.
 
 ::
 
   {% send_email_url <subject> <text_to_post> <object_or_url> <link_text> %}
 
-Will add a ``mailto_url`` variable to the context, containing the URL for the ``mailto``anchor.
+Will add a ``mailto_url`` variable to the context, containing the URL for the ``mailto`` anchor.
+
+::
+
+  {% post_to_reddit_url <text> <object_or_url> %}
+
+Will add a ``reddit_url`` variable to the context, containing the URL for the Reddit poster page.
 
 Example::
 
@@ -99,5 +107,6 @@ Example::
   {% post_to_gplus object_or_url "Post to Google+!" %}
   {% post_to_linkedin object.title object_or_url "Post to LinkedIn" %}
   {% send_email object.title "New Song: {{object.title}}. Check it out!" object_or_url "Share via email" %}
+  {% post_to_reddit "New Song: {{object.title}}" <object_or_url> %}
 
-Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``, ``django_social_share/templatetags/send_email.html``, ``django_social_share/templatetags/post_to_linkedin.html``. You can override them to suit your mileage.
+Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``, ``django_social_share/templatetags/send_email.html``, ``django_social_share/templatetags/post_to_linkedin.html``, ``django_social_share/templatetags/post_to_reddit.html``. You can override them to suit your mileage.
