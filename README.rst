@@ -36,6 +36,15 @@ You will also have to add ``django.core.context_processors.request`` to your ``c
         },
     ]
 
+NOTE: For Django 1.10 
+``django.contrib.sites`` is required in INSTALLED_APPS.
+
+``django.core.context_processors.request`` has been dropped in favor of ``django.template.context_processors.request``.
+
+SITE_ID = 1 is required in settings.py to avoid 500 Internal error on live production with Apache.
+
+
+
 Usage
 -----
 ::
