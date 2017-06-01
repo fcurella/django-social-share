@@ -48,3 +48,9 @@ class TemplateTagsTest(TestCase):
         result = template.render(self.context)
         expected = ' <div class="linkedin-this">\n    <a href="http://www.linkedin.com/shareArticle?mini=true&title=example&url=http%3A//example.com" target="_blank">example</a>\n</div>\n'
         self.assertEqual(result, expected)
+
+    def test_reddit(self):
+        template = Template("{% load social_share %} {% post_to_reddit text url text %}")
+        result = template.render(self.context)
+        expected = ' <div class="reddit-this">\n    <a href="http://www.reddit.com/submit?title=example&url=http%3A//example.com" target="_blank">example</a>\n</div>\n'
+        self.assertEqual(result, expected)

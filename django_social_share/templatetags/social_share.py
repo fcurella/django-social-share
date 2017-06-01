@@ -22,6 +22,7 @@ FACEBOOK_ENDPOINT = 'http://www.facebook.com/sharer/sharer.php?u=%s'
 GPLUS_ENDPOINT = 'http://plus.google.com/share?url=%s'
 MAIL_ENDPOINT = 'mailto:?subject=%s&body=%s'
 LINKEDIN_ENDPOINT = 'http://www.linkedin.com/shareArticle?mini=true&title=%s&url=%s'
+REDDIT_ENDPOINT = 'http://www.reddit.com/submit?title=%s&url=%s'
 
 
 def compile_text(context, text):
@@ -141,5 +142,21 @@ def post_to_linkedin_url(context, title, obj_or_url=None):
 @register.inclusion_tag('django_social_share/templatetags/post_to_linkedin.html', takes_context=True)
 def post_to_linkedin(context, title, obj_or_url=None, link_text='Post to LinkedIn'):
     context = post_to_linkedin_url(context, title, obj_or_url)
+    context['link_text'] = link_text
+    return context
+
+
+@register.simple_tag(takes_context=True)
+def post_to_reddit_url(context, title, obj_or_url=None):
+    request = context['request']
+    title = compile_text(context, title)
+    url = _build_url(request, obj_or_url)
+    context['reddit_url'] = mark_safe(REDDIT_ENDPOINT % (urlencode(title), urlencode(url)))
+    return context
+
+
+@register.inclusion_tag('django_social_share/templatetags/post_to_reddit.html', takes_context=True)
+def post_to_reddit(context, title, obj_or_url=None, link_text='Post to Reddit'):
+    context = post_to_reddit_url(context, title, obj_or_url)
     context['link_text'] = link_text
     return context
