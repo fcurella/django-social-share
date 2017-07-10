@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import re
+
 from django import template
 
 from django.db.models import Model
@@ -25,6 +27,9 @@ LINKEDIN_ENDPOINT = 'http://www.linkedin.com/shareArticle?mini=true&title=%s&url
 REDDIT_ENDPOINT = 'http://www.reddit.com/submit?title=%s&url=%s'
 
 
+BITLY_REGEX = re.compile(r'^https?://bit\.ly/')
+
+
 def compile_text(context, text):
     ctx = template.context.Context(context)
     return template.Template(text).render(ctx)
@@ -34,9 +39,8 @@ def _build_url(request, obj_or_url):
     if obj_or_url is not None:
         if isinstance(obj_or_url, Model):
             if DJANGO_BITLY:
-                import re
                 url = bitlify(obj_or_url)  # type: str
-                if not re.match(r'^https?://bit\.ly/', url):
+                if not BITLY_REGEX.match(url):
                     return request.build_absolute_uri(
                         obj_or_url.get_absolute_url()
                     )
