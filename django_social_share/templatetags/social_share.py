@@ -34,7 +34,14 @@ def _build_url(request, obj_or_url):
     if obj_or_url is not None:
         if isinstance(obj_or_url, Model):
             if DJANGO_BITLY:
-                return bitlify(obj_or_url)
+                import re
+                url = bitlify(obj_or_url)  # type: str
+                if not re.match(r'^https?://bit\.ly/', url):
+                    return request.build_absolute_uri(
+                        obj_or_url.get_absolute_url()
+                    )
+                else:
+                    return url
             else:
                 return request.build_absolute_uri(obj_or_url.get_absolute_url())
         else:
