@@ -7,7 +7,9 @@ Django Social Share
 .. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
-Provides tempatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+', 'Share on LinkedIn', and 'mailto://'.
+Provides templatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+', 'Share on LinkedIn', and 'mailto://'.
+
+Plain HTML templates_ are provided for your convenience, but you can override them to provide your own look and feel.
 
 Installation
 -------------
@@ -109,4 +111,18 @@ Example::
   {% send_email object.title "New Song: {{object.title}}. Check it out!" object_or_url "Share via email" %}
   {% post_to_reddit "New Song: {{object.title}}" <object_or_url> %}
 
-Templates are in ``django_social_share/templatetags/post_to_twitter.html``, ``django_social_share/templatetags/post_to_facebook.html`` and ``django_social_share/templatetags/post_to_gplus.html``, ``django_social_share/templatetags/send_email.html``, ``django_social_share/templatetags/post_to_linkedin.html``, ``django_social_share/templatetags/post_to_reddit.html``. You can override them to suit your mileage.
+.. _templates:
+
+Templates
+---------
+
+Templates are in:
+
+* ``django_social_share/templatetags/post_to_twitter.html``
+* ``django_social_share/templatetags/post_to_facebook.html``
+* ``django_social_share/templatetags/post_to_gplus.html``
+* ``django_social_share/templatetags/send_email.html``
+* ``django_social_share/templatetags/post_to_linkedin.html``
+* ``django_social_share/templatetags/post_to_reddit.html``.
+  
+You can override them to suit your mileage.
