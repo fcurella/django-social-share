@@ -19,12 +19,12 @@ except ImportError:
 register = template.Library()
 
 
-TWITTER_ENDPOINT = 'http://twitter.com/intent/tweet?text=%s'
-FACEBOOK_ENDPOINT = 'http://www.facebook.com/sharer/sharer.php?u=%s'
-GPLUS_ENDPOINT = 'http://plus.google.com/share?url=%s'
+TWITTER_ENDPOINT = 'https://twitter.com/intent/tweet?text=%s'
+FACEBOOK_ENDPOINT = 'https://www.facebook.com/sharer/sharer.php?u=%s'
+GPLUS_ENDPOINT = 'https://plus.google.com/share?url=%s'
 MAIL_ENDPOINT = 'mailto:?subject=%s&body=%s'
-LINKEDIN_ENDPOINT = 'http://www.linkedin.com/shareArticle?mini=true&title=%s&url=%s'
-REDDIT_ENDPOINT = 'http://www.reddit.com/submit?title=%s&url=%s'
+LINKEDIN_ENDPOINT = 'https://www.linkedin.com/shareArticle?mini=true&title=%s&url=%s'
+REDDIT_ENDPOINT = 'https://www.reddit.com/submit?title=%s&url=%s'
 
 
 BITLY_REGEX = re.compile(r'^https?://bit\.ly/')
