@@ -198,7 +198,7 @@ def send_whatsapp_url(context, text, obj_or_url=None):
     return context
 
 
-@register.inclusion_tag('django_social_share/templatetags/chama_no_zap_bb.html', takes_context=True)
+@register.inclusion_tag('django_social_share/templatetags/whatsapp.html', takes_context=True)
 def send_to_whatsapp(context, text, obj_or_url=None, link_text='Send Whatsapp'):
     context = send_whatsapp_url(context, text, obj_or_url)
 
