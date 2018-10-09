@@ -56,7 +56,7 @@ class TemplateTagsTest(TestCase):
         self.assertEqual(result, expected)
 
     def test_whatsapp(self):
-        template = Template("{% load social_share %} {% send_to_whatsapp text url %}")
+        template = Template("{% load social_share %} {% whatsapp text url %}")
         result = template.render(self.context)
         expected = ' <div class="zap-this">\n    <a href="https://api.whatsapp.com/send?text=Teste%20Whatsapp%20message%20https://google.com.br" class="meta-act-link meta-zap" target="_blank">Send Whatsapp</a>\n</div>\n'
         self.assertEqual(result, expected)
