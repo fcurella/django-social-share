@@ -18,7 +18,7 @@ except ImportError:
 
 register = template.Library()
 
-
+WHATSAPP_ENDPOIT = 'https://api.whatsapp.com/send?text=%s'
 TWITTER_ENDPOINT = 'https://twitter.com/intent/tweet?text=%s'
 FACEBOOK_ENDPOINT = 'https://www.facebook.com/sharer/sharer.php?u=%s'
 GPLUS_ENDPOINT = 'https://plus.google.com/share?url=%s'
@@ -170,4 +170,42 @@ def post_to_reddit_url(context, title, obj_or_url=None):
 def post_to_reddit(context, title, obj_or_url=None, link_text='Post to Reddit'):
     context = post_to_reddit_url(context, title, obj_or_url)
     context['link_text'] = link_text
+    return context
+
+
+def _compose_zap(text, url=None):
+    MESSAGE_MAX_NUMBER_OF_CHARACTERS = 500
+    MESSAGE_LINK_LENGTH = 150
+
+    url_length = len(' ') + MESSAGE_LINK_LENGTH if url else 0
+    total_length = len(text) + url_length
+
+    if total_length > MESSAGE_MAX_NUMBER_OF_CHARACTERS:
+        text = text[:(MESSAGE_MAX_NUMBER_OF_CHARACTERS - url_length - 1)] + "…"  # len("…") == 1
+
+    return "%s %s" % (text, url) if url else text
+
+
+@register.simple_tag(takes_context=True)
+def send_whatsapp_url(context, text, obj_or_url=None):
+    text = compile_text(context, text)
+    request = context['request']
+
+    url = _build_url(request, obj_or_url)
+
+    message = _compose_zap(text, url)
+    context['tweet_url'] = WHATSAPP_ENDPOIT % urlencode(message)
+    return context
+
+
+@register.inclusion_tag('django_social_share/templatetags/post_to_twitter.html', takes_context=True)
+def send_to_whatsapp(context, text, obj_or_url=None, link_text='Send Whatsapp'):
+    context = send_whatsapp_url(context, text, obj_or_url)
+
+    request = context['request']
+    url = _build_url(request, obj_or_url)
+    message = _compose_zap(text, url)
+
+    context['link_text'] = link_text
+    context['full_text'] = message
     return context
