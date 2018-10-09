@@ -102,14 +102,14 @@ Will add a ``mailto_url`` variable to the context, containing the URL for the ``
   {% post_to_reddit_url <text> <object_or_url> %}
 
 Will add a ``reddit_url`` variable to the context, containing the URL for the Reddit poster page.
+
 ::
 
-  {% send_to_whatsapp <text_to_post> <object_or_url> %}
+  {% send_whatsapp_url <text_to_post> <object_or_url> %}
 
 Will add a ``message_url`` variable to the context, containing the URL for the Whatsapp sharer popup.
 
 ::
-
 Example::
 
   {% load social_share %}

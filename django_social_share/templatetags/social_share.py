@@ -194,11 +194,11 @@ def send_whatsapp_url(context, text, obj_or_url=None):
     url = _build_url(request, obj_or_url)
 
     message = _compose_zap(text, url)
-    context['tweet_url'] = WHATSAPP_ENDPOIT % urlencode(message)
+    context['zap_url'] = WHATSAPP_ENDPOIT % urlencode(message)
     return context
 
 
-@register.inclusion_tag('django_social_share/templatetags/post_to_twitter.html', takes_context=True)
+@register.inclusion_tag('django_social_share/templatetags/chama_no_zap_bb.html', takes_context=True)
 def send_to_whatsapp(context, text, obj_or_url=None, link_text='Send Whatsapp'):
     context = send_whatsapp_url(context, text, obj_or_url)
 
