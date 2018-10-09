@@ -187,7 +187,7 @@ def _compose_zap(text, url=None):
 
 
 @register.simple_tag(takes_context=True)
-def send_whatsapp_url(context, text, obj_or_url=None):
+def whatsapp_url(context, text, obj_or_url=None):
     text = compile_text(context, text)
     request = context['request']
 
@@ -199,8 +199,8 @@ def send_whatsapp_url(context, text, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/whatsapp.html', takes_context=True)
-def send_to_whatsapp(context, text, obj_or_url=None, link_text='Send Whatsapp'):
-    context = send_whatsapp_url(context, text, obj_or_url)
+def whatsapp(context, text, obj_or_url=None, link_text='Send Whatsapp'):
+    context = whatsapp_url(context, text, obj_or_url)
 
     request = context['request']
     url = _build_url(request, obj_or_url)
