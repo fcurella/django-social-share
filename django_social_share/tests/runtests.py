@@ -35,7 +35,7 @@ settings.configure(
 )
 
 
-def run_tests(*test_args):
+def runtests(*test_args):
     import django
     try:
         django.setup()  # Django 1.7+
@@ -49,4 +49,4 @@ def run_tests(*test_args):
 
 
 if __name__ == '__main__':
-    run_tests()
+    runtests()
