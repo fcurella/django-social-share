@@ -7,7 +7,7 @@ Django Social Share
 .. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
-Provides templatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+', 'Share on LinkedIn', and 'mailto://'.
+Provides templatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+', 'Share on LinkedIn', 'Share on Telegram' and 'mailto://'.
 
 Plain HTML templates_ are provided for your convenience, but you can override them to provide your own look and feel.
 
@@ -56,9 +56,11 @@ Usage
   
   {% post_to_reddit <text_to_post> <object_or_url> %}
 
+  {% post_to_telegram <text_to_post> <object_or_url> <link_text> %}
+
 ``<text_to_post>`` may contain any valid Django Template code. Note that Facebook does not support this anymore.
 
-``<object_or_url>`` is optional. If you pass a django model instance, it will use its ``get_absolute_url`` method. Additionally, if you have ``django_bitly`` installed, it will use its shortUrl on Twitter.
+``<object_or_url>`` is optional (except Telegram). If you pass a django model instance, it will use its ``get_absolute_url`` method. Additionally, if you have ``django_bitly`` installed, it will use its shortUrl on Twitter.
 
 ``<link_text>`` is also optional. It defines the text used for the ``a`` element. Defaults to 'Post to Facebook' and 'Post to Twitter'.
 
@@ -100,6 +102,12 @@ Will add a ``mailto_url`` variable to the context, containing the URL for the ``
 
 Will add a ``reddit_url`` variable to the context, containing the URL for the Reddit poster page.
 
+::
+
+  {% post_to_telegram <text> <object_or_url> %}
+
+Will add a ``telegram_url`` variable to the context, containing the URL for the Telegram sharer popup.
+
 Example::
 
   {% load social_share %}
@@ -110,6 +118,7 @@ Example::
   {% post_to_linkedin object.title object_or_url "Post to LinkedIn" %}
   {% send_email object.title "New Song: {{object.title}}. Check it out!" object_or_url "Share via email" %}
   {% post_to_reddit "New Song: {{object.title}}" <object_or_url> %}
+  {% post_to_telegram "New Song: {{object.title}}" <object_or_url> %}
 
 .. _templates:
 
@@ -124,5 +133,6 @@ Templates are in:
 * ``django_social_share/templatetags/send_email.html``
 * ``django_social_share/templatetags/post_to_linkedin.html``
 * ``django_social_share/templatetags/post_to_reddit.html``.
+* ``django_social_share/templatetags/post_to_telegram.html``.
   
 You can override them to suit your mileage.

@@ -35,7 +35,7 @@ settings.configure(
 )
 
 
-def runtests(*test_args):
+def run_tests(*test_args):
     import django
     try:
         django.setup()  # Django 1.7+
@@ -47,5 +47,6 @@ def runtests(*test_args):
     failures = test_runner.run_tests(['django_social_share'])
     sys.exit(failures)
 
+
 if __name__ == '__main__':
-    runtests()
+    run_tests()
