@@ -7,7 +7,13 @@ Django Social Share
 .. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
-Provides templatetags for 'Tweet This', 'Share this on Facebook', 'Share on Google+', 'Share on LinkedIn', 'Share on Telegram' and 'mailto://'.
+Provides templatetags for:
+* 'Tweet This'
+* 'Share this on Facebook'
+* 'Share on Google+'
+* 'Share on LinkedIn'
+* 'Share on Telegram'
+* 'mailto://'.
 
 Plain HTML templates_ are provided for your convenience, but you can override them to provide your own look and feel.
 
@@ -54,7 +60,7 @@ Usage
   
   {% send_email <subject> <text_to_post> <object_or_url> <link_text> %}
   
-  {% post_to_reddit <text_to_post> <object_or_url> %}
+  {% post_to_reddit <text_to_post> <object_or_url> <link_text> %}
 
   {% post_to_telegram <text_to_post> <object_or_url> <link_text> %}
 
