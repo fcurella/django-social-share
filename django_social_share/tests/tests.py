@@ -54,3 +54,9 @@ class TemplateTagsTest(TestCase):
         result = template.render(self.context)
         expected = ' <div class="reddit-this">\n    <a href="https://www.reddit.com/submit?title=example&url=http%3A//example.com" target="_blank">example</a>\n</div>\n'
         self.assertEqual(result, expected)
+
+    def test_telegram(self):
+        template = Template("{% load social_share %} {% post_to_telegram text url text %}")
+        result = template.render(self.context)
+        expected = ' <div class="telegram-this">\n    <a href="https://t.me/share/url?text=example&url=http%3A//example.com" target="_blank">example</a>\n</div>\n'
+        self.assertEqual(result, expected)

@@ -47,5 +47,6 @@ def runtests(*test_args):
     failures = test_runner.run_tests(['django_social_share'])
     sys.exit(failures)
 
+
 if __name__ == '__main__':
     runtests()
