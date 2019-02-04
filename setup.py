@@ -1,12 +1,15 @@
+import io
 import os
 from setuptools import setup, find_packages
 
-VERSION = '1.3.0'
 
+here = os.path.abspath(os.path.dirname(__file__))
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+with io.open(os.path.join(here, 'README.rst'), encoding='utf-8') as fp:
+    README = fp.read()
 
+with open(os.path.join(here, 'VERSION')) as version_file:
+    version = version_file.read().strip()
 
 requirements = []
 test_requirements = [
@@ -15,9 +18,9 @@ test_requirements = [
 
 setup(
     name="django-social-share",
-    version=VERSION,
+    version=version,
     description="Templatetags for 'tweet this' and 'share on facebook'",
-    long_description=read('README.rst'),
+    long_description=README,
     url='https://github.com/fcurella/django-social-share',
     license='MIT',
     author='Flavio Curella',
