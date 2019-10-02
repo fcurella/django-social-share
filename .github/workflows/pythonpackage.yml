@@ -14,19 +14,7 @@ jobs:
         exclude:
           - python-version: 2.7
             django-version: "Django>=2.0,<2.1"
-          - python-version: 3.5
-            django-version: "Django>=2.0,<2.1"
-          - python-version: 3.6
-            django-version: "Django>=2.0,<2.1"
-          - python-version: 3.7
-            django-version: "Django>=2.0,<2.1"
           - python-version: 2.7
-            django-version: "Django>=2.1,<2.2"
-          - python-version: 3.5
-            django-version: "Django>=2.1,<2.2"
-          - python-version: 3.6
-            django-version: "Django>=2.1,<2.2"
-          - python-version: 3.7
             django-version: "Django>=2.1,<2.2"
 
     steps:
