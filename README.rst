@@ -7,6 +7,7 @@ Django Social Share
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
 
 Provides templatetags for:
+
 * 'Tweet This'
 * 'Share this on Facebook'
 * 'Share on Google+'
