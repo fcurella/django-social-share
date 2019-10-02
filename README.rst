@@ -1,8 +1,7 @@
 Django Social Share
 ======================================
 
-.. image:: https://travis-ci.org/fcurella/django-social-share.svg?branch=master
-    :target: https://travis-ci.org/fcurella/django-social-share
+.. image:: https://github.com/fcurella/django-social-share/workflows/Python%20build/badge.svg
 
 .. image:: https://coveralls.io/repos/github/fcurella/django-social-share/badge.svg?branch=master
     :target: https://coveralls.io/github/fcurella/django-social-share?branch=master
