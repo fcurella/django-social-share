@@ -30,5 +30,7 @@ jobs:
         pip install -e .
         pip install coveralls
     - name: Test with pytest
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
         coverage run --source django_social_share setup.py test && coveralls
