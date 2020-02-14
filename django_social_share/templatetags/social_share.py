@@ -26,6 +26,7 @@ MAIL_ENDPOINT = 'mailto:?subject=%s&body=%s'
 LINKEDIN_ENDPOINT = 'https://www.linkedin.com/shareArticle?mini=true&title=%s&url=%s'
 REDDIT_ENDPOINT = 'https://www.reddit.com/submit?title=%s&url=%s'
 TELEGRAM_ENDPOINT = 'https://t.me/share/url?text=%s&url=%s'
+WHATSAPP_ENDPOINT = 'https://wa.me/?text=%s'
 
 
 BITLY_REGEX = re.compile(r'^https?://bit\.ly/')
@@ -186,5 +187,19 @@ def post_to_telegram_url(context, title, obj_or_url):
 @register.inclusion_tag('django_social_share/templatetags/post_to_telegram.html', takes_context=True)
 def post_to_telegram(context, title, obj_or_url=None, link_text='Post to Telegram'):
     context = post_to_telegram_url(context, title, obj_or_url)
+    context['link_text'] = link_text
+    return context
+
+@register.simple_tag(takes_context=True)
+def post_to_whatsapp_url(context, obj_or_url=None):
+    request = context['request']
+    url = _build_url(request, obj_or_url)
+    context['whatsapp_url'] = WHATSAPP_ENDPOINT % urlencode(url)
+    return context
+
+
+@register.inclusion_tag('django_social_share/templatetags/post_to_whatsapp.html', takes_context=True)
+def post_to_whatsapp(context, obj_or_url=None, link_text='Post to WhatsApp'):
+    context = post_to_whatsapp_url(context, obj_or_url)
     context['link_text'] = link_text
     return context

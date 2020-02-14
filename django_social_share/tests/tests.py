@@ -60,3 +60,9 @@ class TemplateTagsTest(TestCase):
         result = template.render(self.context)
         expected = ' <div class="telegram-this">\n    <a href="https://t.me/share/url?text=example&url=http%3A//example.com" target="_blank">example</a>\n</div>\n'
         self.assertEqual(result, expected)
+
+    def test_whatsapp(self):
+        template = Template("{% load social_share %} {% post_to_whatsapp url text %}")
+        result = template.render(self.context)
+        expected = ' <div class="whatsapp-this">\n    <a href="https://wa.me/?text=http%3A//example.com" target="_blank">example</a>\n</div>\n'
+        self.assertEqual(result, expected)
