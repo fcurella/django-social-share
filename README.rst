@@ -13,6 +13,7 @@ Provides templatetags for:
 * 'Share on Google+'
 * 'Share on LinkedIn'
 * 'Share on Telegram'
+* 'Share on WhatsApp'
 * 'mailto://'.
 
 Plain HTML templates_ are provided for your convenience, but you can override them to provide your own look and feel.
@@ -56,13 +57,13 @@ Usage
   
   {% post_to_linkedin <subject> <object_or_url> <link_text> %}
   
-  {% post_to_mail <email_subject> <text_to_post> <object_or_url> <link_text> %}
-  
   {% send_email <subject> <text_to_post> <object_or_url> <link_text> %}
   
   {% post_to_reddit <text_to_post> <object_or_url> <link_text> %}
 
   {% post_to_telegram <text_to_post> <object_or_url> <link_text> %}
+
+  {% post_to_whatsapp <object_or_url> <link_text> %}
 
 ``<text_to_post>`` may contain any valid Django Template code. Note that Facebook does not support this anymore.
 
@@ -114,6 +115,12 @@ Will add a ``reddit_url`` variable to the context, containing the URL for the Re
 
 Will add a ``telegram_url`` variable to the context, containing the URL for the Telegram sharer popup.
 
+::
+
+  {% post_to_whatsapp_url <object_or_url> %}
+
+Will add a ``whatsapp_url`` variable to the context, containing the URL for the WhatsApp sharer.
+
 Example::
 
   {% load social_share %}
@@ -125,6 +132,7 @@ Example::
   {% send_email object.title "New Song: {{object.title}}. Check it out!" object_or_url "Share via email" %}
   {% post_to_reddit "New Song: {{object.title}}" <object_or_url> %}
   {% post_to_telegram "New Song: {{object.title}}" <object_or_url> %}
+  {% post_to_whatsapp object_or_url "Share via WhatsApp" %}
 
 .. _templates:
 
@@ -140,5 +148,6 @@ Templates are in:
 * ``django_social_share/templatetags/post_to_linkedin.html``
 * ``django_social_share/templatetags/post_to_reddit.html``.
 * ``django_social_share/templatetags/post_to_telegram.html``.
+* ``django_social_share/templatetags/post_to_whatsapp.html``.
   
 You can override them to suit your mileage.
