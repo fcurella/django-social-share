@@ -26,7 +26,7 @@ MAIL_ENDPOINT = 'mailto:?subject=%s&body=%s'
 LINKEDIN_ENDPOINT = 'https://www.linkedin.com/shareArticle?mini=true&title=%s&url=%s'
 REDDIT_ENDPOINT = 'https://www.reddit.com/submit?title=%s&url=%s'
 TELEGRAM_ENDPOINT = 'https://t.me/share/url?text=%s&url=%s'
-WHATSAPP_ENDPOINT = 'https://wa.me/?text=%s'
+WHATSAPP_ENDPOINT = 'https://api.whatsapp.com/send?text=%s'
 
 
 BITLY_REGEX = re.compile(r'^https?://bit\.ly/')
