@@ -44,6 +44,10 @@ You will also have to add ``django.core.context_processors.request`` to your ``c
             }
         },
     ]
+    
+Note in most cases sharing will not work if you are using ``localhost`` or your domain is otherwise not accessible from the public internet. For testing local development, you can use a service like ngrok_, and set your `Site instance <https://docs.djangoproject.com/en/3.0/ref/contrib/sites/>`_'s ``domain`` to the hostname provided by ``ngrok``.
+
+.. _ngrok: https://ngrok.com/
 
 Usage
 -----
