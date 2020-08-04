@@ -59,7 +59,7 @@ Usage
   
   {% post_to_twitter <text_to_post> <object_or_url> <link_text> %}
   
-  {% post_to_linkedin <subject> <object_or_url> <link_text> %}
+  {% post_to_linkedin <object_or_url> %}
   
   {% send_email <subject> <text_to_post> <object_or_url> <link_text> %}
   
@@ -97,12 +97,6 @@ Will add a ``gplus_url`` variable to the context, containing the URL for the Goo
 
 ::
 
-  {% post_to_linkedin_url <subject> <object_or_url> %}
-
-Will add a ``linkedin_url`` variable to the context, containing the URL for the LinkedIn sharer popup.
-
-::
-
   {% send_email_url <subject> <text_to_post> <object_or_url> <link_text> %}
 
 Will add a ``mailto_url`` variable to the context, containing the URL for the ``mailto`` anchor.
@@ -132,7 +126,7 @@ Example::
   {% post_to_facebook object_or_url "Post to Facebook!" %}
   {% post_to_twitter "New Song: {{object.title}}. Check it out!" object_or_url "Post to Twitter" %}
   {% post_to_gplus object_or_url "Post to Google+!" %}
-  {% post_to_linkedin object.title object_or_url "Post to LinkedIn" %}
+  {% post_to_linkedin object_or_url %}
   {% send_email object.title "New Song: {{object.title}}. Check it out!" object_or_url "Share via email" %}
   {% post_to_reddit "New Song: {{object.title}}" <object_or_url> %}
   {% post_to_telegram "New Song: {{object.title}}" <object_or_url> %}
