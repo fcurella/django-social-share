@@ -13,7 +13,7 @@ with open(os.path.join(here, 'VERSION')) as version_file:
 
 requirements = []
 test_requirements = [
-    "Django>=1.7",
+    "Django>=2.0",
 ]
 
 setup(
