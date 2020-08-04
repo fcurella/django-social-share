@@ -143,19 +143,23 @@ def send_email(context, subject, text, obj_or_url=None, link_text='Share via ema
     return context
 
 
+@register.filter(name='linkedin_locale')
+def linkedin_locale(value):
+    lang, country = value.split('-')
+    return '_'.join([lang, country.upper()])
+
+
 @register.simple_tag(takes_context=True)
-def post_to_linkedin_url(context, title, obj_or_url=None):
+def post_to_linkedin_url(context, obj_or_url=None):
     request = context['request']
-    title = compile_text(context, title[:200])  # 200 char limit
     url = _build_url(request, obj_or_url)
-    context['linkedin_url'] = mark_safe(LINKEDIN_ENDPOINT % (urlencode(title), urlencode(url)))
+    context['linkedin_url'] = url
     return context
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_linkedin.html', takes_context=True)
-def post_to_linkedin(context, title, obj_or_url=None, link_text='Post to LinkedIn'):
-    context = post_to_linkedin_url(context, title, obj_or_url)
-    context['link_text'] = link_text
+def post_to_linkedin(context, obj_or_url=None):
+    context = post_to_linkedin_url(context, obj_or_url)
     return context
 
 
