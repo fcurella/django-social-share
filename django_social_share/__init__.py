@@ -1,1 +1,1 @@
-VERSION = tuple(map(int, "1.4.0".split('.')))
+VERSION = tuple(map(int, "2.0.0".split('.')))
