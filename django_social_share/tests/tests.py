@@ -66,3 +66,15 @@ class TemplateTagsTest(TestCase):
         result = template.render(self.context)
         expected = ' <div class="whatsapp-this">\n    <a href="https://api.whatsapp.com/send?text=http%3A//example.com" target="_blank">example</a>\n</div>\n'
         self.assertEqual(result, expected)
+
+    def test_pinterest(self):
+        template = Template("{% load social_share %} {% save_to_pinterest url %}")
+        result = template.render(self.context)
+        expected = ' <div class="whatsapp-this">\n    <a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?url=http%3A//example.com" target="_blank"></a>\n</div>\n'
+        self.assertEqual(result, expected)
+
+    def test_pinterest_script(self):
+        template = Template("{% load social_share %} {% add_pinterest_script %}")
+        result = template.render(self.context)
+        expected = '<script async defer src="http://assets.pinterest.com/js/pinit.js"></script>'
+        self.assertEqual(result, expected)

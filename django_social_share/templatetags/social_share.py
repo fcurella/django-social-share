@@ -223,5 +223,5 @@ def save_to_pinterest(context, obj_or_url=None, pin_count=False):
     return context
 
 @register.inclusion_tag('django_social_share/templatetags/pinterest_script.html', takes_context=False)
-def save_to_pinterest():
+def add_pinterest_script():
     pass
