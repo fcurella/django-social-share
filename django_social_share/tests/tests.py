@@ -70,7 +70,7 @@ class TemplateTagsTest(TestCase):
     def test_pinterest(self):
         template = Template("{% load social_share %} {% save_to_pinterest url %}")
         result = template.render(self.context)
-        expected = ' <div class="whatsapp-this">\n    <a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?url=http%3A//example.com" target="_blank"></a>\n</div>'
+        expected = ' <div class="pinterest-this">\n    <a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?url=http%3A//example.com" target="_blank"></a>\n</div>'
         self.assertEqual(result, expected)
 
     def test_pinterest_script(self):
