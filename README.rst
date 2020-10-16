@@ -15,6 +15,7 @@ Provides templatetags for:
 * 'Share on Telegram'
 * 'Share on WhatsApp'
 * 'mailto://'.
+* 'Save to Pinterest'
 
 Plain HTML templates_ are provided for your convenience, but you can override them to provide your own look and feel.
 
@@ -69,6 +70,10 @@ Usage
 
   {% post_to_whatsapp <object_or_url> <link_text> %}
 
+  {% save_to_pinterest <object_or_url> %}
+
+  {% add_pinterest_script %}
+
 ``<text_to_post>`` may contain any valid Django Template code. Note that Facebook does not support this anymore.
 
 ``<object_or_url>`` is optional (except Telegram). If you pass a django model instance, it will use its ``get_absolute_url`` method. Additionally, if you have ``django_bitly`` installed, it will use its shortUrl on Twitter.
@@ -119,6 +124,12 @@ Will add a ``telegram_url`` variable to the context, containing the URL for the 
 
 Will add a ``whatsapp_url`` variable to the context, containing the URL for the WhatsApp sharer.
 
+::
+
+  {% save_to_pinterest_url <object_or_url> %}
+
+Will add a ``pinterest_url`` variable to the context, containing the URL for the Pinterest sharer.
+
 Example::
 
   {% load social_share %}
@@ -131,6 +142,8 @@ Example::
   {% post_to_reddit "New Song: {{object.title}}" <object_or_url> %}
   {% post_to_telegram "New Song: {{object.title}}" <object_or_url> %}
   {% post_to_whatsapp object_or_url "Share via WhatsApp" %}
+  {% save_to_pinterest object_or_url %}
+  {% add_pinterest_script %} // Required for save_to_pinterest. Add to the end of body tag.
 
 .. _templates:
 
@@ -147,5 +160,7 @@ Templates are in:
 * ``django_social_share/templatetags/post_to_reddit.html``.
 * ``django_social_share/templatetags/post_to_telegram.html``.
 * ``django_social_share/templatetags/post_to_whatsapp.html``.
+* ``django_social_share/templatetags/save_to_pinterest.html``.
+* ``django_social_share/templatetags/pinterest_script.html``.
   
 You can override them to suit your mileage.

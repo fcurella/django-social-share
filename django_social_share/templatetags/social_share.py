@@ -27,6 +27,7 @@ LINKEDIN_ENDPOINT = 'https://www.linkedin.com/shareArticle?mini=true&title=%s&ur
 REDDIT_ENDPOINT = 'https://www.reddit.com/submit?title=%s&url=%s'
 TELEGRAM_ENDPOINT = 'https://t.me/share/url?text=%s&url=%s'
 WHATSAPP_ENDPOINT = 'https://api.whatsapp.com/send?text=%s'
+PINTEREST_ENDPOINT = 'https://www.pinterest.com/pin/create/button/?url=%s'
 
 
 BITLY_REGEX = re.compile(r'^https?://bit\.ly/')
@@ -207,3 +208,20 @@ def post_to_whatsapp(context, obj_or_url=None, link_text='Post to WhatsApp'):
     context = post_to_whatsapp_url(context, obj_or_url)
     context['link_text'] = link_text
     return context
+
+@register.simple_tag(takes_context=True)
+def save_to_pinterest_url(context, obj_or_url=None):
+    request = context['request']
+    url = _build_url(request, obj_or_url)
+    context['pinterest_url'] = PINTEREST_ENDPOINT % urlencode(url)
+    return context
+
+@register.inclusion_tag('django_social_share/templatetags/save_to_pinterest.html', takes_context=True)
+def save_to_pinterest(context, obj_or_url=None, pin_count=False):
+    context = save_to_pinterest_url(context, obj_or_url)
+    context['pin_count'] = pin_count
+    return context
+
+@register.inclusion_tag('django_social_share/templatetags/pinterest_script.html', takes_context=False)
+def add_pinterest_script():
+    pass
