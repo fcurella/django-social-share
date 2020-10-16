@@ -76,5 +76,5 @@ class TemplateTagsTest(TestCase):
     def test_pinterest_script(self):
         template = Template("{% load social_share %} {% add_pinterest_script %}")
         result = template.render(self.context)
-        expected = '<script async defer src="http://assets.pinterest.com/js/pinit.js"></script>'
+        expected = ' <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>'
         self.assertEqual(result, expected)
