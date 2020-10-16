@@ -195,6 +195,7 @@ def post_to_telegram(context, title, obj_or_url=None, link_text='Post to Telegra
     context['link_text'] = link_text
     return context
 
+
 @register.simple_tag(takes_context=True)
 def post_to_whatsapp_url(context, obj_or_url=None):
     request = context['request']
@@ -209,6 +210,7 @@ def post_to_whatsapp(context, obj_or_url=None, link_text='Post to WhatsApp'):
     context['link_text'] = link_text
     return context
 
+
 @register.simple_tag(takes_context=True)
 def save_to_pinterest_url(context, obj_or_url=None):
     request = context['request']
@@ -216,11 +218,13 @@ def save_to_pinterest_url(context, obj_or_url=None):
     context['pinterest_url'] = PINTEREST_ENDPOINT % urlencode(url)
     return context
 
+
 @register.inclusion_tag('django_social_share/templatetags/save_to_pinterest.html', takes_context=True)
 def save_to_pinterest(context, obj_or_url=None, pin_count=False):
     context = save_to_pinterest_url(context, obj_or_url)
     context['pin_count'] = pin_count
     return context
+
 
 @register.inclusion_tag('django_social_share/templatetags/pinterest_script.html', takes_context=False)
 def add_pinterest_script():
