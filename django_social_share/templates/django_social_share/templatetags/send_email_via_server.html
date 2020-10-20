@@ -1,0 +1,39 @@
+<!--<div class="mail-this">-->
+<!--    <a href="{{ mailto_url|safe }}">{{link_text}}</a>-->
+<!--</div>-->
+<div class="mail-this">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        {{link_text}}
+    </button>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Formulaire de partage par mail</h5>
+            </div>
+            <form method="post">
+            <div class="modal-body">
+
+
+
+                            {% csrf_token %}
+                            {{ form }}
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

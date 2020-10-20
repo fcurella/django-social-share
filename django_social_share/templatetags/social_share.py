@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.contrib.admin.models import LogEntry, ADDITION
+from django.http import request
 import re
-
+import logging
 from django import template
 
 from django.db.models import Model
 from django.template.defaultfilters import urlencode
 from django.utils.safestring import mark_safe
+from django_social_share.models import Partage
 
 try:
     from django_bitly.templatetags.bitly import bitlify
@@ -143,6 +145,11 @@ def send_email(context, subject, text, obj_or_url=None, link_text='Share via ema
     context['link_text'] = link_text
     return context
 
+@register.inclusion_tag('django_social_share/templatetags/send_email_via_server.html', takes_context=True)
+def send_email_from_server(context, subject, text, obj_or_url=None, link_text='Partager via Email'):
+    context = send_email_url(context, subject, text, obj_or_url)
+    context['link_text'] = link_text
+    return context
 
 @register.filter(name='linkedin_locale')
 def linkedin_locale(value):
