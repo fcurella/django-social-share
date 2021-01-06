@@ -146,6 +146,9 @@ def send_email(context, subject, text, obj_or_url=None, link_text='Share via ema
 
 @register.filter(name='linkedin_locale')
 def linkedin_locale(value):
+    if "-" not in value:
+        return value
+
     lang, country = value.split('-')
     return '_'.join([lang, country.upper()])
 
