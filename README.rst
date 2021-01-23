@@ -54,23 +54,23 @@ Usage
 -----
 ::
 
-  {% post_to_facebook <object_or_url> <link_text> %}
+  {% post_to_facebook <object_or_url> <link_text> <link_class> %}
   
-  {% post_to_gplus <object_or_url> <link_text> %}
+  {% post_to_gplus <object_or_url> <link_text> <link_class> %}
   
-  {% post_to_twitter <text_to_post> <object_or_url> <link_text> %}
+  {% post_to_twitter <text_to_post> <object_or_url> <link_text> <link_class> %}
   
-  {% post_to_linkedin <object_or_url> %}
+  {% post_to_linkedin <object_or_url> <link_class> %}
   
-  {% send_email <subject> <text_to_post> <object_or_url> <link_text> %}
+  {% send_email <subject> <text_to_post> <object_or_url> <link_text> <link_class> %}
   
-  {% post_to_reddit <text_to_post> <object_or_url> <link_text> %}
+  {% post_to_reddit <text_to_post> <object_or_url> <link_text> <link_class> %}
 
-  {% post_to_telegram <text_to_post> <object_or_url> <link_text> %}
+  {% post_to_telegram <text_to_post> <object_or_url> <link_text>  <link_class> %}
 
-  {% post_to_whatsapp <object_or_url> <link_text> %}
+  {% post_to_whatsapp <object_or_url> <link_text> <link_class> %}
 
-  {% save_to_pinterest <object_or_url> %}
+  {% save_to_pinterest <object_or_url>  <link_class> %}
 
   {% add_pinterest_script %}
 
