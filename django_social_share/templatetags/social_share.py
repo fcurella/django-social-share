@@ -107,10 +107,10 @@ def post_to_facebook_url(context, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_facebook.html', takes_context=True)
-def post_to_facebook(context, obj_or_url=None, link_text='',link_class=""):
+def post_to_facebook(context, obj_or_url=None, link_text='',link_class=''):
     context = post_to_facebook_url(context, obj_or_url)
-    context['link_class'] = link_class  or ""
-    context['link_text'] = link_text or "Post to Facebook"
+    context['link_class'] = link_class  or ''
+    context['link_text'] = link_text or 'Post to Facebook'
     return context
 
 
@@ -123,7 +123,7 @@ def post_to_gplus_url(context, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_gplus.html', takes_context=True)
-def post_to_gplus(context, obj_or_url=None, link_text='',link_class=""):
+def post_to_gplus(context, obj_or_url=None, link_text='',link_class=''):
     context = post_to_gplus_url(context, obj_or_url)
     context['link_class'] = link_class 
     context['link_text'] = link_text or 'Post to Google+'
@@ -142,7 +142,7 @@ def send_email_url(context, subject, text, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/send_email.html', takes_context=True)
-def send_email(context, subject, text, obj_or_url=None, link_text='',link_class=""):
+def send_email(context, subject, text, obj_or_url=None, link_text='',link_class=''):
     context = send_email_url(context, subject, text, obj_or_url)
     context['link_class'] = link_class 
     context['link_text'] = link_text or 'Share via email'
@@ -167,7 +167,7 @@ def post_to_linkedin_url(context, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_linkedin.html', takes_context=True)
-def post_to_linkedin(context, obj_or_url=None,link_class=""):
+def post_to_linkedin(context, obj_or_url=None,link_class=''):
     context = post_to_linkedin_url(context, obj_or_url)
     context['link_class'] = link_class 
     return context
@@ -183,7 +183,7 @@ def post_to_reddit_url(context, title, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_reddit.html', takes_context=True)
-def post_to_reddit(context, title, obj_or_url=None, link_text='',link_class=""):
+def post_to_reddit(context, title, obj_or_url=None, link_text='',link_class=''):
     context = post_to_reddit_url(context, title, obj_or_url)
     context['link_class'] = link_class 
     context['link_text'] = link_text or 'Post to Reddit' 
@@ -200,7 +200,7 @@ def post_to_telegram_url(context, title, obj_or_url):
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_telegram.html', takes_context=True)
-def post_to_telegram(context, title, obj_or_url=None, link_text='',link_class=""):
+def post_to_telegram(context, title, obj_or_url=None, link_text='',link_class=''):
     context = post_to_telegram_url(context, title, obj_or_url)
     context['link_class'] = link_class 
     context['link_text'] = link_text or 'Post to Telegram'
@@ -216,7 +216,7 @@ def post_to_whatsapp_url(context, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/post_to_whatsapp.html', takes_context=True)
-def post_to_whatsapp(context, obj_or_url=None, link_text='',link_class=""):
+def post_to_whatsapp(context, obj_or_url=None, link_text='',link_class=''):
     context = post_to_whatsapp_url(context, obj_or_url)
     context['link_class'] = link_class 
     context['link_text'] = link_text or 'Post to WhatsApp'
@@ -232,7 +232,7 @@ def save_to_pinterest_url(context, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/save_to_pinterest.html', takes_context=True)
-def save_to_pinterest(context, obj_or_url=None, pin_count=False,link_class=""):
+def save_to_pinterest(context, obj_or_url=None, pin_count=False,link_class=''):
     context = save_to_pinterest_url(context, obj_or_url)
     context['link_class'] = link_class 
     context['pin_count'] = pin_count
