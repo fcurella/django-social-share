@@ -232,7 +232,7 @@ def save_to_pinterest_url(context, obj_or_url=None):
 
 
 @register.inclusion_tag('django_social_share/templatetags/save_to_pinterest.html', takes_context=True)
-def save_to_pinterest(context, obj_or_url=None, pin_count=False,link_class=''):
+def save_to_pinterest(context, obj_or_url=None, pin_count=False, link_class=''):
     context = save_to_pinterest_url(context, obj_or_url)
     context['link_class'] = link_class 
     context['pin_count'] = pin_count
