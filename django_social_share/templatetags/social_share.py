@@ -102,7 +102,6 @@ def post_to_facebook_url(context, obj_or_url=None):
     request = context['request']
     url = _build_url(request, obj_or_url)
     context['facebook_url'] = FACEBOOK_ENDPOINT % urlencode(url)
-    print(context['facebook_url'])
     return context
 
 
