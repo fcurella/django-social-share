@@ -164,3 +164,9 @@ Templates are in:
 * ``django_social_share/templatetags/pinterest_script.html``.
   
 You can override them to suit your mileage.
+
+Issues
+------
+
+If you have any issues, please use `GitHub's issues <https://github.com/fcurella/django-social-share/issues>`_.
+Please refrain from emailing the author.
