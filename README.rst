@@ -24,7 +24,7 @@ Installation
 
 ::
 
-    $ pip install django-social-share
+    $ python -m pip install django-social-share
 
 Add the app to ``INSTALLED_APPS``::
 
