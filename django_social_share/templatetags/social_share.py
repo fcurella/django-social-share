@@ -241,3 +241,22 @@ def save_to_pinterest(context, obj_or_url=None, pin_count=False, link_class=''):
 @register.inclusion_tag('django_social_share/templatetags/pinterest_script.html', takes_context=False)
 def add_pinterest_script():
     pass
+
+@register.simple_tag(takes_context=True)
+def copy_to_clipboard_url(context, obj_or_url=None):
+    request = context['request']
+    url = _build_url(request, obj_or_url)
+    context['copy_url'] = url
+    return context
+
+@register.inclusion_tag('django_social_share/templatetags/copy_to_clipboard.html', takes_context=True)
+def copy_to_clipboard(context, obj_or_url, link_text='', link_class=''):
+    context = copy_to_clipboard_url(context, obj_or_url)
+    
+    context['link_class'] = link_class
+    context['link_text'] = link_text or 'Copy to clipboard'
+    return context
+
+@register.inclusion_tag('django_social_share/templatetags/copy_script.html', takes_context=False)
+def add_copy_script():
+    pass
