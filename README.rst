@@ -139,7 +139,7 @@ Will add a ``pinterest_url`` variable to the context, containing the URL for the
 
   {% copy_to_clipboard <object_or_url> <link_text> <link_class> %}
 
-will add a ``copy_url``` variable to the context, containing the URL for the link to copy.
+will add a ``copy_url`` variable to the context, containing the URL for the link to copy.
 
 Example::
 
@@ -155,7 +155,7 @@ Example::
   {% post_to_whatsapp object_or_url "Share via WhatsApp" %}
   {% save_to_pinterest object_or_url %}
   {% add_pinterest_script %} // Required for save_to_pinterest. Add to the end of body tag.
-  {% copy_to_clipboard object_or_url%}
+  {% copy_to_clipboard object_or_url "Copy to clipboard!" %}
   {% add_copy_script %} // Required for copy_to_clipboard. Add to the end of body tag.
 
 .. _templates:
