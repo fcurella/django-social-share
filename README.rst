@@ -53,7 +53,8 @@ Note in most cases sharing will not work if you are using ``localhost`` or your 
 
 Usage
 -----
-Add ``{% load social_share %}`` to your HTML template. This tag should come before any other template tag unless otherwise.
+Add ``{% load social_share %}`` to your HTML template.
+This tag should be placed at the top of most of your HTML document and should come before any other template tag unless otherwise.
 
 Template Objects
 ---------------
